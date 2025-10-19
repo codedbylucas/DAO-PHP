@@ -2,17 +2,17 @@
 require 'config.php';
 require 'dao/UsuarioDaoMysql.php';
 
-$id = filter_input(INPUT_GET, 'id');
-if($id) {
+$usuarioDao = new UsuarioDaoMysql($pdo);
 
-    $usuarioDao = new UsuarioDaoMysql($pdo);
+$id = filter_input(INPUT_GET, 'id');
+if ($id) {
+
     $info = $usuarioDao->findById($id);
 
-    if(!$info) {
+    if (!$info) {
         header("Location: index.php");
         exit;
     }
-
 } else {
     header("Location: index.php");
     exit;
@@ -21,17 +21,17 @@ if($id) {
 <h1>Editar Usuário</h1>
 
 <form method="POST" action="editar_action.php">
-    <input type="hidden" name="id" value="<?=$info->getId();?>" />
+    <input type="hidden" name="id" value="<?= $info->getId(); ?>" />
 
     <label>
-        Nome:<br/>
-        <input type="text" name="name" value="<?=$info->getNome();?>" />
-    </label><br/><br/>
+        Nome:<br />
+        <input type="text" name="name" value="<?= $info->getNome(); ?>" />
+    </label><br /><br />
 
     <label>
-        E-mail:<br/>
-        <input type="email" name="email" value="<?=$info->getEmail();?>" />
-    </label><br/><br/>
+        E-mail:<br />
+        <input type="email" name="email" value="<?= $info->getEmail(); ?>" />
+    </label><br /><br />
 
     <input type="submit" value="Salvar" />
 </form>

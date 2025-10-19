@@ -20,6 +20,7 @@ class UsuarioDaoMysql implements UsuarioDAO
         $sql->execute();
 
         $u->setId($this->pdo->lastInsertId());
+        return $u;
     }
 
     public function findAll()
@@ -31,12 +32,12 @@ class UsuarioDaoMysql implements UsuarioDAO
             $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($dados as $item) {
-                $usuario = new Usuario();
-                $usuario->setId($item['id_user']);
-                $usuario->setNome($item['nome']);
-                $usuario->setEmail($item['email']);
+                $u = new Usuario();
+                $u->setId($item['id_user']);
+                $u->setNome($item['nome']);
+                $u->setEmail($item['email']);
 
-                $array[] = $usuario;
+                $array[] = $u;
             }
         }
 
@@ -52,12 +53,12 @@ class UsuarioDaoMysql implements UsuarioDAO
         if ($sql->rowCount() > 0) {
             $data = $sql->fetch(PDO::FETCH_ASSOC);
 
-            $usuario = new Usuario();
-            $usuario->setId($data['id_user']);
-            $usuario->setNome($data['nome']);
-            $usuario->setEmail($data['email']);
+            $u = new Usuario();
+            $u->setId($data['id_user']);
+            $u->setNome($data['nome']);
+            $u->setEmail($data['email']);
 
-            return $usuario;
+            return $u;
         }
 
         return false;
@@ -72,7 +73,12 @@ class UsuarioDaoMysql implements UsuarioDAO
         if ($sql->rowCount() > 0) {
             $data = $sql->fetch(PDO::FETCH_ASSOC);
 
-            return $data;
+            $u = new Usuario();
+            $u->setId($data['id_user']);
+            $u->setNome($data['nome']);
+            $u->setEmail($data['email']);
+
+            return $u;
         }
 
         return false;
