@@ -1,0 +1,40 @@
+CLASSE USUARIO
+
+PROPRIEDADES E METODOS
+
+- id
+- nome
+- email
+
+- getId
+- setId
+
+
+CLASSE USUARIODAO
+
+TUDO QUE ESTA RELACIONADO COM BANCO
+
+- insert
+- listar
+- deletar
+- editar
+
+
+PASSO PARA CRIAR UM USUARIO
+
+USAMOS A CLASSE USUARIO E CRIAMOS UM OBJETO DELE EX:
+
+    $usuario = new Usuario()
+    $usuario->setId('id');
+    $usuario->setNome('fulano');
+    $usuario->setEmail('fulano@gmail.com');
+
+DEPOIS PASSAMOS PARA O DAO INSERIR O USUARIO NO BANCO EX:
+
+    $usuarioDao = new UsuarioDAO();
+    $usuarioDao->inserir(Usuario $usuario)
+
+- CRIO O OBJETO DO USUARIO A SER ADICIONADO 
+- MANDO O OBJETO PARA O INTERMEDIARIO
+- O INTERMEDIARIO FAZ A CONSULTA NO BANCO
+
